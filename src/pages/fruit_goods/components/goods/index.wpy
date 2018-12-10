@@ -1,0 +1,168 @@
+<style lang="less">
+  .goods {
+    position: relative;
+    width: 100%;
+    .goods-image {
+      height: 372rpx;
+      image {
+        width: 100%;
+        max-height: 372rpx;
+      }
+    }
+    .goods-info {
+      overflow: hidden;
+      background-color: #fff;
+      .goods-title {
+        margin: 10rpx 16rpx 0;
+        overflow: hidden;
+        font-size: 26rpx;
+        color: #151516;
+        line-height: 58rpx;
+        height: 58rpx;
+      }
+      .goods-tags {
+        height: 32rpx;
+        margin: 0 16rpx;
+        font-size: 24rpx;
+        overflow: hidden;
+        text {
+          margin-right: 8rpx;
+          display: inline-block;
+          height: 30rpx;
+          line-height: 30rpx;
+          padding: 0 6rpx;
+          border-radius: 4rpx;
+
+          background-color: rgba(255, 87, 6, 0.08);
+          color: rgb(255, 87, 6);
+        }
+      }
+      .goods-footer {
+        position: relative;
+        padding: 6rpx 16rpx 16rpx;
+        font-size: 22rpx;
+        line-height: 1.2;
+        .goods-desc {
+          line-height: 52rpx;
+          padding-right: 4rpx;
+          overflow: hidden;
+          white-space: nowrap;
+          .price-tag {
+            color: #E02E24;
+            font-size: 20rpx;
+          }
+          .price-num {
+            font-size: 36rpx;
+            color: #E02E24;
+          }
+          .sales-tip {
+            font-size: 20rpx;
+            color: #9C9C9C;
+            position: relative;
+            left: 0.03rem;
+          }
+        }
+        .goods-buy-btn {
+          position: absolute;
+          top: 6rpx;
+          right: 6rpx;
+          width: 80rpx;
+          height: 56rpx;
+          border-radius: 28rpx;
+          font-size: 36rpx;
+          line-height: 56rpx;
+          text-align: center;
+          color: #fff;
+          background-color: #f03227;
+          padding-top: 2rpx;
+        }
+      }
+    }
+  }
+</style>
+<template>
+  <view class="goods">
+    <view class="goods-image">
+      <image src="{{data.hd_thumb_url}}" background-size="cover" mode="aspectFit" />
+    </view>
+    <view class="goods-info">
+      <view class="goods-title">
+        <text>{{data.goods_name}}</text>
+      </view>
+      <view class="goods-tags">
+        <block wx:for-items="{{data.tag_list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+          <text>{{item.text}}</text>
+        </block>
+      </view>
+      <view class="goods-footer">
+        <view class="goods-desc">
+          <text class="price-tag">￥</text>
+          <text class="price-num">{{data.group.price / 100}}</text>
+          <text class="sales-tip">{{data.sales_tip}}</text>
+        </view>
+        <view class="goods-buy-btn"><text>抢</text></view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import { connect } from 'wepy-redux'
+  import { INCREMENT, DECREMENT } from '@/store/types/counter'
+  import { asyncInc } from '@/store/actions'
+  import { Type } from '@/common/utils'
+
+  @connect({
+    stateNum (state) {
+      return state.counter.num
+    },
+    asyncNum (state) {
+      return state.counter.asyncNum
+    }
+  }, {
+    incNum: INCREMENT,
+    decNum: DECREMENT,
+    asyncInc
+  })
+
+  export default class Goods extends wepy.component {
+    props = {
+      class: {
+        type: [Array, String],
+        coerce: function (data) {
+          console.log('type: ', Type.isString(data));
+          return Type.isString(data) ? [data] : data
+        },
+        default: []
+      },
+      data: {
+        type: [Object],
+        coerce: function (data) {
+          return Object || {};
+        },
+        default: {}
+      },
+    }
+
+    data = {
+
+    }
+    computed = {
+
+    }
+    events = {
+
+    }
+
+    watch = {
+
+    }
+
+    methods = {
+
+    }
+    onLoad() {
+      console.log('on load...');
+    }
+  }
+</script>

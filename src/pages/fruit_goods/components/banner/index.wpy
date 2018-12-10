@@ -2,9 +2,10 @@
   .banner {
     position: relative;
     width: 100%;
+    height: 290rpx;
     image {
       width: 100%;
-      height: 294rpx;
+      height: 100%;
     }
     .desc {
       position: absolute;
@@ -20,9 +21,9 @@
   }
 </style>
 <template>
-  <view class='banner'>
-    <image src='{{imagePath}}' background-size='cover' mode='aspectFit' />
-    <view class='desc'>
+  <view class="banner">
+    <image src="{{imagePath}}" background-size="cover" mode="aspectFit" />
+    <view class="desc">
       <text>当前页面完成拼单（当天有效）</text>
       <text>奖励1袋化肥，每天限2次</text>
     </view>
@@ -49,42 +50,22 @@
 
   export default class Banner extends wepy.component {
     props = {
-      num: {
-        type: [Number, String],
-        coerce: function (v) {
-          return +v
-        },
-        default: 50
-      }
+
     }
 
     data = {
       imagePath: 'http://pinduoduoimg.yangkeduo.com/cartoon_activity/fruiter/inviteGoodsBanner.png'
     }
     events = {
-      'index-broadcast': (...args) => {
-        let $event = args[args.length - 1]
-        console.log(`${this.$name} receive ${$event.name} from ${$event.source.$name}`)
-      }
+
     }
 
     watch = {
-      num (curVal, oldVal) {
-        console.log(`旧值：${oldVal}，新值：${curVal}`)
-      }
+
     }
 
     methods = {
-      plus () {
-        this.num = this.num + 1
-        console.log(this.$name + ' plus tap')
 
-        this.$emit('index-emit', 1, 2, 3)
-      },
-      minus () {
-        this.num = this.num - 1
-        console.log(this.$name + ' minus tap')
-      }
     }
   }
 </script>
