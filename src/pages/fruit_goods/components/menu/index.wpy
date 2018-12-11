@@ -154,6 +154,7 @@
         this.menus.id = menuID
         this.submenus.id = 0
         this.submenus.list = submenus
+        this.$emit('change-menu', menuID)
       },
 
       onTabSubmenu (submenuID) {
@@ -162,6 +163,7 @@
           return
         }
         this.submenus.id = submenuID
+        this.$emit('change-submenu', submenuID)
       }
     }
   }

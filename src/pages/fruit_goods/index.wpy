@@ -20,7 +20,7 @@
 <template>
   <view class='fruit-goods'>
     <banner></banner>
-    <menu></menu>
+    <menu @change-menu.user="onChangeMenu" @change-submenu.user="onChangeSubmenu"></menu>
     <view class="goods-list">
       <repeat for="{{goodsList}}" key="index" index="index" item="item">
         <goods class='goods-item' :data="item"></goods>
@@ -45,7 +45,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: 'test'
+      navigationBarTitleText: '果园'
     }
     components = {
       banner: Banner,
@@ -69,7 +69,13 @@
     }
 
     methods = {
+      onChangeMenu(...args) {
 
+      },
+
+      onChangeSubmenu(...args) {
+
+      }
     }
 
     events = {

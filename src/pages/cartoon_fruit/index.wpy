@@ -29,7 +29,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: 'test'
+      navigationBarTitleText: '果园'
     }
     components = {
       toast: Toast
